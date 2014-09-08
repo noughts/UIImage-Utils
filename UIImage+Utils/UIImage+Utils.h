@@ -10,4 +10,7 @@
 
 @interface UIImage (Utils)
 
+/// 先にリサイズして高速化したblur
+-(UIImage*)imageByApplyingOptimizedBlurWithRadius:(NSInteger)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor;
+
 @end

@@ -21,23 +21,22 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
                             </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="3e9-LG-4Sd">
+                                <rect key="frame" x="18" y="518" width="284" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="hoge:" destination="vXZ-lx-hvc" eventType="valueChanged" id="BSN-I8-ZrC"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="2vm-ug-fQT" appends="YES" id="73g-Tm-jsQ"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="wH9-Re-vzj" id="mfI-dg-QSa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="2vm-ug-fQT">
-                    <connections>
-                        <action selector="nextEffect:" destination="vXZ-lx-hvc" id="VCt-Xm-oKg"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>

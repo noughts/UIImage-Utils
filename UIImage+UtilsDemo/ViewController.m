@@ -1,6 +1,7 @@
 #import "ViewController.h"
 #import "UIImageEffects.h"
 
+#import "UIImage+Utils.h"
 #import <mach/mach.h>
 #import <mach/mach_time.h>
 
@@ -23,10 +24,6 @@
     [super viewDidLoad];
     
     self.image = [UIImage imageNamed:@"cheetah1136.png"];
-	self.image = [self resizeCGImage:self.image scale:0.1];
-    [self updateImage:nil];
-    
-    [self showAlertForFirstRun];
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.1)
     {
@@ -56,105 +53,17 @@
 
 
 
--(UIImage*)resizeCGImage:(UIImage*)image scale:(double)scale {
-	int width = image.size.width * scale;
-	int height = image.size.height * scale;
-	
-	CGImageRef ref = image.CGImage;
-	
-	// create context, keeping original image properties
-	CGColorSpaceRef colorspace = CGImageGetColorSpace(ref);
-	CGContextRef context = CGBitmapContextCreate(NULL, width, height,
-												 CGImageGetBitsPerComponent(ref),
-												 CGImageGetBytesPerRow(ref),
-												 colorspace,
-												 CGImageGetBitmapInfo(ref));
-	CGColorSpaceRelease(colorspace);
-	
-	if(context == NULL)
-		return nil;
-	
-	// draw image to context (resizing it)
-	CGContextDrawImage(context, CGRectMake(0, 0, width, height), ref);
-	// extract resulting image from context
-	CGImageRef imgRef = CGBitmapContextCreateImage(context);
-	CGContextRelease(context);
-	
-	UIImage* output_img = [UIImage imageWithCGImage:imgRef scale:image.scale orientation:image.imageOrientation];
-	CGImageRelease(imgRef);
-	
-	return output_img;
-}
-
-
-//| ----------------------------------------------------------------------------
-- (void)updateImage:(id)sender
-{
+-(IBAction)hoge:(UISlider*)sender{
 	NSDate* s = [NSDate date];
-    NSString *effectText = @"";
-    UIImage *effectImage = nil;
-    
-    switch (self.imageIndex)
-    {
-        case 0:
-            effectImage = self.image;
-            break;
-        case 1:
-            effectImage = [UIImageEffects imageByApplyingLightEffectToImage:self.image];
-            effectText = NSLocalizedString(@"Light", @"");
-            self.effectLabel.textColor = [UIColor darkTextColor];
-            break;
-        case 2:
-            effectImage = [UIImageEffects imageByApplyingExtraLightEffectToImage:self.image];
-            effectText = NSLocalizedString(@"Extra light", @"");
-            self.effectLabel.textColor = [UIColor darkTextColor];
-            break;
-        case 3:
-            effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:self.image];
-            effectText = NSLocalizedString(@"Dark", @"");
-            self.effectLabel.textColor = [UIColor lightTextColor];
-            break;
-        case 4:
-            effectImage = [UIImageEffects imageByApplyingTintEffectWithColor:[UIColor blueColor] toImage:self.image];
-            effectText = NSLocalizedString(@"Color tint", @"");
-            self.effectLabel.textColor = [UIColor lightTextColor];
-            break;
-    }
-    
-    self.imageView.image = effectImage;
-    self.effectLabel.text = effectText;
-    
+	
+	self.imageView.image = [self.image imageByApplyingOptimizedBlurWithRadius:sender.value tintColor:nil saturationDeltaFactor:1];
+	
+	
 	NSLog( @"%f", [[NSDate date] timeIntervalSinceDate:s]*1000 );
 }
 
 
-//| ----------------------------------------------------------------------------
-- (IBAction)nextEffect:(id)sender
-{
-    self.imageIndex++;
-    
-    if (self.imageIndex > 4)
-    {
-        self.imageIndex = 0;
-    }
-	
-    [self updateImage:sender];
-}
 
-
-//| ----------------------------------------------------------------------------
-- (void)showAlertForFirstRun
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    static NSString *DidFirstRunKey = @"DidFirstRun";
-    BOOL didFirstRun = [userDefaults boolForKey:DidFirstRunKey];
-    if (!didFirstRun)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tap to change image effect", @"") message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil];
-        [alert show];
-        [userDefaults setBool:YES forKey:DidFirstRunKey];
-    }
-}
 
 
 @end
