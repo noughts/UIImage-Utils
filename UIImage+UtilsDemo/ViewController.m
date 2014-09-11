@@ -26,9 +26,11 @@
     [super viewDidLoad];
     
     self.image = [UIImage imageNamed:@"cheetah1136.png"];
-
+	self.image = [UIImage imageWithCGImage:self.image.CGImage scale:1 orientation:UIImageOrientationDown];
 	
-	self.imageView.image = self.image;
+	self.imageView.image = [self.image resizeImageWithScale:0.3];
+	
+//	return;
 	
 	// 初回のみ時間がかかるようです
 	[NNProfiler start:@"resize"];

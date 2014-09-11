@@ -65,6 +65,12 @@ static NSOperationQueue* _imageProcessing_queue;
 	}
 	int width = self.size.width * scale;
 	int height = self.size.height * scale;
+	if( self.imageOrientation == UIImageOrientationLeft || self.imageOrientation == UIImageOrientationRight ){
+		// 横方向に回転するときはwidthとheightを逆にする
+		width = self.size.height * scale;
+		height = self.size.width * scale;
+	}
+	
 	
 	CGImageRef ref = self.CGImage;
 	
