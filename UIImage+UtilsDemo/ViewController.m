@@ -26,11 +26,13 @@
     [super viewDidLoad];
     
     self.image = [UIImage imageNamed:@"cheetah1136.png"];
+	self.image = [UIImage imageWithCGImage:self.image.CGImage scale:self.image.scale orientation:UIImageOrientationRight];
 	
+	self.imageView.image = self.image;
 	
 	// 初回のみ時間がかかるようです
 	[NNProfiler start:@"resize"];
-	[self.image imageByApplyingOptimizedBlurWithRadius:20 tintColor:nil saturationDeltaFactor:1 queue:nil completion:^(UIImage *result_img) {
+	[self.image imageByApplyingOptimizedBlurWithRadius:10 tintColor:nil saturationDeltaFactor:1 queue:nil completion:^(UIImage *result_img) {
 		self.imageView.image = result_img;
 		[NNProfiler end:@"resize"];
 	}];
@@ -43,6 +45,7 @@
 	NSDate* s = [NSDate date];
 	
 	self.imageView.image = [self.image imageByApplyingOptimizedBlurWithRadius:sender.value tintColor:nil saturationDeltaFactor:1];
+	NSLog( @"%@", NSStringFromCGSize(self.imageView.image.size) );
 	
 	
 	NSLog( @"raduis=%f %f", sender.value, [[NSDate date] timeIntervalSinceDate:s]*1000 );

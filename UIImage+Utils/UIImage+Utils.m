@@ -48,6 +48,7 @@ static NSOperationQueue* _imageProcessing_queue;
 	[queue addOperationWithBlock:^{
 		UIImage* resized_img = [self resizeImageWithScale:1.0/blurRadius];
 		UIImage* result_img = [UIImageEffects imageByApplyingBlurToImage:resized_img withRadius:10 tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:nil];
+		result_img = [UIImage imageWithCGImage:result_img.CGImage scale:resized_img.scale orientation:resized_img.imageOrientation];// オリジナル画像のscaleとorientationをセット
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 			completion( result_img );
 		}];
