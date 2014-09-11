@@ -1,0 +1,14 @@
+PODS:
+  - NNProfiler (0.1.0)
+
+DEPENDENCIES:
+  - NNProfiler (from `https://github.com/noughts/NNProfiler`)
+
+EXTERNAL SOURCES:
+  NNProfiler:
+    :git: https://github.com/noughts/NNProfiler
+
+SPEC CHECKSUMS:
+  NNProfiler: 330eed9bf91be62d94e189f61df579ece9bbcc35
+
+COCOAPODS: 0.33.1

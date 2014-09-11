@@ -11,6 +11,17 @@
 
 @implementation UIImage (Utils)
 
+static NSOperationQueue* _imageProcessing_queue;
+
+
++(NSOperationQueue*)imageProcessingQueue{
+	if( !_imageProcessing_queue ){
+		_imageProcessing_queue = [[NSOperationQueue alloc] init];
+		_imageProcessing_queue.maxConcurrentOperationCount = 1;
+	}
+	return _imageProcessing_queue;
+}
+
 
 /// 先にリサイズして高速化したblur
 -(UIImage*)imageByApplyingOptimizedBlurWithRadius:(NSInteger)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor{
@@ -22,11 +33,33 @@
 	return [UIImageEffects imageByApplyingBlurToImage:resized_img withRadius:10 tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:nil];
 }
 
+/// 先にリサイズして高速化したblur(非同期)
+-(void)imageByApplyingOptimizedBlurWithRadius:(NSInteger)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor queue:(NSOperationQueue*)queue completion:(void (^)(UIImage* result_img))completion{
+	if( blurRadius == 0 ){
+		completion( nil );
+		return;
+	}
+	blurRadius++;
+	
+	if( !queue ){
+		queue = [UIImage imageProcessingQueue];
+	}
+	
+	[queue addOperationWithBlock:^{
+		UIImage* resized_img = [self resizeImageWithScale:1.0/blurRadius];
+		UIImage* result_img = [UIImageEffects imageByApplyingBlurToImage:resized_img withRadius:10 tintColor:tintColor saturationDeltaFactor:saturationDeltaFactor maskImage:nil];
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+			completion( result_img );
+		}];
+	}];
+}
 
 
 
 
--(UIImage*)resizeImageWithScale:(double)scale {
+
+
+-(UIImage*)resizeImageWithScale:(double)scale{
 	int width = self.size.width * scale;
 	int height = self.size.height * scale;
 	
