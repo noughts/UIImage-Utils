@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2403A391-9DA3-43D3-986F-0C5DA92DEC0B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>UIImage+UtilsDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>471D0C9A-0F63-41A0-967B-EB047CF382FC</key>
+		<string>https://github.com/noughts/UIImage-Utils.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>UIImage+UtilsDemo.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>471D0C9A-0F63-41A0-967B-EB047CF382FC</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/noughts/UIImage-Utils.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>471D0C9A-0F63-41A0-967B-EB047CF382FC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>471D0C9A-0F63-41A0-967B-EB047CF382FC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>UIImage+Utils</string>
+		</dict>
+	</array>
+</dict>
+</plist>

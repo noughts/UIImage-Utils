@@ -32,7 +32,7 @@
 	
 	// 初回のみ時間がかかるようです
 	[NNProfiler start:@"resize"];
-	[self.image imageByApplyingOptimizedBlurWithRadius:10 tintColor:nil saturationDeltaFactor:1 queue:nil completion:^(UIImage *result_img) {
+	[self.image imageByApplyingOptimizedBlurWithRadius:2 tintColor:nil saturationDeltaFactor:1 queue:nil completion:^(UIImage *result_img) {
 		self.imageView.image = result_img;
 		[NNProfiler end:@"resize"];
 	}];
