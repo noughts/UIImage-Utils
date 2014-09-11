@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D4C52B419C1D5C90020983F /* cheetah1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D567F6E19BD39A90034BA45 /* cheetah1136.png */; };
 		4D567F3319BCB9460034BA45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D567F3219BCB9460034BA45 /* Foundation.framework */; };
 		4D567F3519BCB9460034BA45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D567F3419BCB9460034BA45 /* CoreGraphics.framework */; };
 		4D567F3719BCB9460034BA45 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D567F3619BCB9460034BA45 /* UIKit.framework */; };
@@ -269,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D567F5C19BCB9460034BA45 /* InfoPlist.strings in Resources */,
+				4D4C52B419C1D5C90020983F /* cheetah1136.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

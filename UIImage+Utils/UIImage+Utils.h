@@ -16,5 +16,10 @@
 /// 先にリサイズして高速化したblur(非同期)
 -(void)imageByApplyingOptimizedBlurWithRadius:(NSInteger)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor queue:(NSOperationQueue*)queue completion:(void (^)(UIImage* result_img))completion;
 
+/// リサイズ
+-(UIImage*)resizeImageWithScale:(double)scale;
+
+/// 長辺の長さを指定してリサイズ
+-(UIImage*)resizeWithLongSideLength:(NSInteger)length;
 
 @end

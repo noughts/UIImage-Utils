@@ -58,11 +58,11 @@ static NSOperationQueue* _imageProcessing_queue;
 }
 
 
-
-
-
-
+/// リサイズ
 -(UIImage*)resizeImageWithScale:(double)scale{
+	if( scale > 1 ){
+		return self;
+	}
 	int width = self.size.width * scale;
 	int height = self.size.height * scale;
 	
@@ -87,6 +87,39 @@ static NSOperationQueue* _imageProcessing_queue;
 	
 	return output_img;
 }
+
+
+
+/// 長辺の長さを指定してリサイズ
+-(UIImage*)resizeWithLongSideLength:(NSInteger)length{
+	double scale;
+	if( self.size.width > self.size.height ){
+		// 横長
+		scale = length / self.size.width;
+	} else {
+		// 縦長
+		scale = length / self.size.height;
+	}
+	return [self resizeImageWithScale:scale];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

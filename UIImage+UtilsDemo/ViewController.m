@@ -26,7 +26,7 @@
     [super viewDidLoad];
     
     self.image = [UIImage imageNamed:@"cheetah1136.png"];
-	self.image = [UIImage imageWithCGImage:self.image.CGImage scale:self.image.scale orientation:UIImageOrientationRight];
+
 	
 	self.imageView.image = self.image;
 	
@@ -37,6 +37,13 @@
 		[NNProfiler end:@"resize"];
 	}];
 	
+	[self testResize];
+}
+
+
+-(void)testResize{
+	UIImage* hoge = [UIImage imageWithCGImage:self.image.CGImage scale:self.image.scale orientation:UIImageOrientationRight];
+	hoge = [hoge resizeImageWithScale:0.5];
 }
 
 
