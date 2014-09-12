@@ -22,4 +22,9 @@
 /// 長辺の長さを指定してリサイズ
 -(UIImage*)resizeWithLongSideLength:(NSInteger)length;
 
+/// imageOrientationを変更
+// カメラから来た画像はもともと正しく表示されるように設定されているが、picasaインフラにアップロードされると見た目に合わせてレンダリングされimageOrientationが0になるので、
+// それを考慮して、どちらの画像でも正しくセットされるようにしてあります
+-(UIImage*)imageByApplyingOrientation:(UIImageOrientation)orientation;
+
 @end

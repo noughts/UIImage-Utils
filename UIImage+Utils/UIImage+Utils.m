@@ -58,6 +58,88 @@ static NSOperationQueue* _imageProcessing_queue;
 }
 
 
+/// imageOrientationを変更
+// カメラから来た画像はもともと正しく表示されるように設定されているが、picasaインフラにアップロードされると見た目に合わせてレンダリングされimageOrientationが0になるので、
+// それを考慮して、どちらの画像でも正しくセットされるようにしてあります
+-(UIImage*)imageByApplyingOrientation:(UIImageOrientation)orientation{
+	UIImageOrientation fixedOrientation = orientation;
+	if( self.imageOrientation == 0 ){
+		switch (orientation) {
+			case UIImageOrientationUp:// 0
+				fixedOrientation = UIImageOrientationUp;// 0
+				break;
+			case UIImageOrientationDown:// 1
+				fixedOrientation = UIImageOrientationDown;// 1
+				break;
+			case UIImageOrientationLeft:// 2
+				fixedOrientation = UIImageOrientationLeft;// 2
+				break;
+			case UIImageOrientationRight:// 3
+				fixedOrientation = UIImageOrientationRight;// 3
+				break;
+			default:
+				break;
+		}
+	}
+	if( self.imageOrientation == 1 ){
+		switch (orientation) {
+			case UIImageOrientationUp:// 0
+				fixedOrientation = UIImageOrientationDown;// 1
+				break;
+			case UIImageOrientationDown:// 1
+				fixedOrientation = UIImageOrientationUp;// 0
+				break;
+			case UIImageOrientationLeft:// 2
+				fixedOrientation = UIImageOrientationLeft;// 2
+				break;
+			case UIImageOrientationRight:// 3
+				fixedOrientation = UIImageOrientationRight;// 3
+				break;
+			default:
+				break;
+		}
+	}
+	if( self.imageOrientation == 2 ){
+		switch (orientation) {
+			case UIImageOrientationUp:// 0
+				fixedOrientation = UIImageOrientationLeft;// 2
+				break;
+			case UIImageOrientationDown:// 1
+				fixedOrientation = UIImageOrientationRight;// 3
+				break;
+			case UIImageOrientationLeft:// 2
+				fixedOrientation = UIImageOrientationUp;// 0
+				break;
+			case UIImageOrientationRight:// 3
+				fixedOrientation = UIImageOrientationDown;// 1
+				break;
+			default:
+				break;
+		}
+	}
+	if( self.imageOrientation == 3 ){
+		switch (orientation) {
+			case UIImageOrientationUp:// 0
+				fixedOrientation = UIImageOrientationRight;// 3
+				break;
+			case UIImageOrientationDown:// 1
+				fixedOrientation = UIImageOrientationLeft;// 2
+				break;
+			case UIImageOrientationLeft:// 2
+				fixedOrientation = UIImageOrientationDown;// 1
+				break;
+			case UIImageOrientationRight:// 3
+				fixedOrientation = UIImageOrientationUp;// 0
+				break;
+			default:
+				break;
+		}
+	}
+
+	return [UIImage imageWithCGImage:self.CGImage scale:self.scale orientation:fixedOrientation];
+}
+
+
 /// リサイズ
 -(UIImage*)resizeImageWithScale:(double)scale{
 	if( scale > 1 ){
