@@ -65,7 +65,7 @@ static NSOperationQueue* _imageProcessing_queue;
 	NSArray* fixedOrientations;
 	switch (self.imageOrientation) {
 		case UIImageOrientationUp:
-			fixedOrientations = @[@(UIImageOrientationUp), @(UIImageOrientationDown), @(UIImageOrientationLeft), @(UIImageOrientationRight)];
+			fixedOrientations = @[@(UIImageOrientationUp), @(UIImageOrientationDown), @(UIImageOrientationRight), @(UIImageOrientationLeft)];
 			break;
 		case UIImageOrientationDown:
 			fixedOrientations = @[@(UIImageOrientationDown), @(UIImageOrientationUp), @(UIImageOrientationLeft), @(UIImageOrientationRight)];

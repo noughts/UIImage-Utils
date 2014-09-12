@@ -39,14 +39,18 @@
 
 -(void)testApplyOrientation{
 	UIImage* img = [UIImage imageNamed:@"cheetah1136.png"];
+	
+	img = [img imageByApplyingNormalizedOrientation:UIImageOrientationLeft];
+
+	
 	// カメラから来た画像をシミュレート(Portlait)
 //	img = [self rotateImage:img angle:90];
 //	img = [UIImage imageWithCGImage:img.CGImage scale:img.scale orientation:UIImageOrientationRight];
-//	img = [img imageByApplyingOrientation:UIImageOrientationRight];
+//	img = [img imageByApplyingNormalizedOrientation:UIImageOrientationRight];
 	
-	img = [self rotateImage:img angle:180];
-	img = [UIImage imageWithCGImage:img.CGImage scale:img.scale orientation:UIImageOrientationDown];
-	img = [img imageByApplyingNormalizedOrientation:UIImageOrientationLeft];
+//	img = [self rotateImage:img angle:180];
+//	img = [UIImage imageWithCGImage:img.CGImage scale:img.scale orientation:UIImageOrientationDown];
+//	img = [img imageByApplyingNormalizedOrientation:UIImageOrientationLeft];
 	
 //	img = [self rotateImage:img angle:270];
 //	img = [UIImage imageWithCGImage:img.CGImage scale:img.scale orientation:UIImageOrientationLeft];
