@@ -46,7 +46,7 @@
 	
 	img = [self rotateImage:img angle:180];
 	img = [UIImage imageWithCGImage:img.CGImage scale:img.scale orientation:UIImageOrientationDown];
-	img = [img imageByApplyingOrientation:UIImageOrientationDown];
+	img = [img imageByApplyingNormalizedOrientation:UIImageOrientationLeft];
 	
 //	img = [self rotateImage:img angle:270];
 //	img = [UIImage imageWithCGImage:img.CGImage scale:img.scale orientation:UIImageOrientationLeft];
